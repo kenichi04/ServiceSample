@@ -13,6 +13,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // 通知タップによる起動時か判定
+        Intent intent = getIntent();
+        boolean fromNotification = intent.getBooleanExtra("fromNotification", false);
+        if(fromNotification) {
+            // 通知タップからの起動時
+            Button btPlay = findViewById(R.id.btPlay);
+            Button btStop = findViewById(R.id.btStop);
+            btPlay.setEnabled(false);
+            btStop.setEnabled(true);
+        }
     }
 
     public void onPlayButtonClick(View view) {
